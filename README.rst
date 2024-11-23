@@ -8,7 +8,9 @@
 
 =========
 
-**Malaysian-Dataset**, We gather Malaysian dataset!
+**Malaysian-Dataset**, We gather Malaysian dataset! 
+
+Most of the folders are lack of README, so it is better to read from https://huggingface.co/mesolitica
 
 Documentation
 --------------
@@ -17,6 +19,11 @@ Proper documentation is available at https://malaysian-dataset.readthedocs.io
 
 How we gather dataset?
 ----------------------
+
+Crawling
+~~~~~~~~~~~~
+
+Contributors heavily crawled Malaysian websites, you can check out the full list of crawled websites at https://github.com/users/huseinzol05/projects/1
 
 Social media
 ~~~~~~~~~~~~
@@ -28,8 +35,8 @@ Translation
 ~~~~~~~~~~~
 
 1. We use Google Translate.
-2. We use ChatGPT.
-3. We use Malaya translation.
+2. We use LLM, including ChatGPT3.5, ChatGPT4, Mixtral, LLama3 70B.
+3. We use Malaya translation, https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2
 
 Semisupervised
 ~~~~~~~~~~~~~~
@@ -45,7 +52,7 @@ Teacher-student
 LLM
 ~~~
 
-1. Generate using ChatGPT3.5, ChatGPT4 and Mixtral.
+1. Generate using ChatGPT3.5, ChatGPT4, Mixtral, LLama3 70B.
 
 Notes
 -----
