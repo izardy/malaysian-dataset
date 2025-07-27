@@ -12,6 +12,9 @@ import os
 import tqdm
 import warnings
 import torch
+import subprocess
+import re
+import soundfile as sf
 from pydub import AudioSegment
 from pyannote.audio import Pipeline
 import pandas as pd
@@ -31,6 +34,9 @@ from models import separate_fast, dnsmos, whisper_asr, silero_vad
 warnings.filterwarnings("ignore")
 audio_count = 0
 
+def get_length(file):
+    y, sr = sf.read(file)
+    return len(y) / sr
 
 @time_logger
 def standardization(audio):
@@ -54,6 +60,15 @@ def standardization(audio):
     global audio_count
     name = "audio"
 
+    duration = 0
+    try:
+        duration = get_length(audio)
+    except Exception as e:
+        print(e)
+
+    if duration == 0 or (duration / 60 / 60) >= 5:
+        return None
+
     if isinstance(audio, str):
         name = os.path.basename(audio)
         audio = AudioSegment.from_file(audio)
@@ -62,9 +77,6 @@ def standardization(audio):
         audio_count += 1
     else:
         raise ValueError("Invalid audio type")
-
-    if (audio.duration_seconds / 60 / 60) > 3:
-        return None
 
     logger.debug("Entering the preprocessing of audio")
 
